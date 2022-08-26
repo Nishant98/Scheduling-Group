@@ -1,0 +1,86 @@
+{
+    "_version": "1.8.0",
+    "sap.app": {
+        "id": "schgroupconfig",
+        "type": "application",
+        "title": "ODS Demo",
+        "description": "Sample Application",
+        "i18n": "i18n/i18n.properties",
+        "dataSources": {
+            "SchedulingGroup": {
+                "uri": "/api/schgroup/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "libs": {}
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "SchedulingGroup",
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true,
+                    "groupProperties": {
+                        "default": {
+                            "submit": "Auto"
+                        }
+                    }
+                }
+            }
+        },
+        "routing": {
+            "routes": [{
+                    "pattern": ":?query:",
+                    "name": "List",
+                    "target": "List"
+                },
+                {
+                    "pattern": "SchedulingGroupConfiguration({key}):?query:",
+                    "name": "ObjectDetails",
+                    "target": "ObjectDetails"
+                }
+            ],
+            "targets": {
+                "List": {
+                    "type": "Component",
+                    "id": "List",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "SchedulingGroupConfiguration",
+                            "navigation" : {
+                                "SchedulingGroupConfiguration" : {
+                                    "detail" : {
+                                        "route" : "ObjectDetails"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "ObjectDetails": {
+                    "type": "Component",
+                    "id": "DetailsList",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings" : {
+                            "entitySet" : "SchedulingGroupConfiguration"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

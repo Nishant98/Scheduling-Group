@@ -1,0 +1,8 @@
+### For Scheduling Group Config
+POST http://localhost:8080/api/schgroup/SchedulingGroupConfig HTTP/1.1
+content-type: application/json
+
+{
+    "schedulingGroupType": "Sub",
+    "attributeName": "Layout2"
+}

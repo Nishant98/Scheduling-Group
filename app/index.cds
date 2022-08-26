@@ -1,0 +1,1 @@
+using from './schgroup/fiori-service';
